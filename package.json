@@ -1,0 +1,32 @@
+{
+  "name": "courseplanner-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Fallow-Inc/courseplanner-backend.git",
+  "author": "ankit <ankit.sanghavi87@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.4.0",
+    "autoprefixer": "^9.8.6",
+    "class-validator": "^0.13.2",
+    "dotenv": "^14.2.0",
+    "graphql": "15.7.2",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.38"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "SET NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
+    "start:win": "SET NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
+    "start:mac": "export NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
+    "emulate:prod": "SET NODE_ENV=production&& nodemon -w src --ext ts-node ./index.ts",
+    "produce": "ts-node ./index.ts"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}

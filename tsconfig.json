@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"esModuleInterop": true,
+		"strictPropertyInitialization": false,
+		"target": "es2018",
+		"module": "commonjs",
+		"lib": ["es2018", "esnext.asynciterable"],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
+	}
+}
