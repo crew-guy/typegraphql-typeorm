@@ -4,6 +4,12 @@
 # -----------------------------------------------
 
 type Course {
+  course_name: String!
+  course_number: String!
+  credits: Float!
+  instructor_name: String!
+  online_link: String!
+  prerequisites: [Course!]!
   unique_course_id: ID!
 }
 
