@@ -20,13 +20,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "SET NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
-    "start:win": "SET NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
-    "start:mac": "export NODE_ENV=development&& nodemon -w src --ext ts --exec ts-node ./index.ts",
+    "dev": "SET NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
+    "start:win": "SET NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
+    "start:mac": "export NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
     "emulate:prod": "SET NODE_ENV=production&& nodemon -w src --ext ts-node ./index.ts",
     "produce": "ts-node ./index.ts"
   },
   "devDependencies": {
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.5"
   }
 }

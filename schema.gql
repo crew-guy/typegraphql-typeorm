@@ -6,13 +6,31 @@
 type Course {
   course_name: String!
   course_number: String!
+  course_uuid: String!
   credits: Float!
+  dependencies: [Course!]!
+  institute_id: String!
   instructor_name: String!
   online_link: String!
   prerequisites: [Course!]!
-  unique_course_id: ID!
+}
+
+input CreateCourseInput {
+  course_name: String!
+  course_number: String!
+  credits: Float!
+  institute_id: String!
+  instructor_name: String!
+  online_link: String!
+  prerequisiteCourseNumbers: [String!]
+}
+
+type Mutation {
+  addCourse(course: CreateCourseInput!): Course!
 }
 
 type Query {
   allCourses: [Course!]!
+  returnDependentCourses(course_id: String!): [Course!]!
+  returnPrerequisiteCourses(course_id: String!): [Course!]!
 }
