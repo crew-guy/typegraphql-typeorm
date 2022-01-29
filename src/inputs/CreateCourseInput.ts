@@ -21,6 +21,6 @@ export class CreateCourseInput {
     @Field(() => Number)
     credits: number;
 
-    @Field(() => [String])
-    prerequisiteCourseNumbers: String[];
+    @Field(() => [String],{nullable:true})
+    prerequisiteCourseNumbers?: String[];
 }
