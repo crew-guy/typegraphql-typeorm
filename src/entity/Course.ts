@@ -1,7 +1,7 @@
 // src/entity/Address.ts
 
 import { Field, ID, ObjectType, registerEnumType } from "type-graphql";
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 export enum AssociatedEntity{
     Consignor = "Consignor",
@@ -19,15 +19,18 @@ registerEnumType(AssociatedEntity, {
 @Entity("courses")
 @ObjectType()
 export class Course extends BaseEntity{
-    @Field(() => ID)
-    @PrimaryGeneratedColumn()
-    unique_course_id: number;
-
+    @Field(()=>String)
+    @PrimaryColumn()
+    course_uuid:string
+        
     @Field(() => String)
-    @Column()
+    @Column({unique:true})
+    institute_id: string;
+        
+    @Field(() => String)
+    @Column({unique:true})
     course_number: string;
 
-    
     @Field(() => String)
     @Column()
     course_name: string;
@@ -47,4 +50,8 @@ export class Course extends BaseEntity{
     @Field(() => [Course])
     @OneToMany(type => Course, course => course.prerequisites)
     prerequisites: Course[]
+
+    @Field(() => [Course])
+    @OneToMany(type => Course, course => course.dependencies)
+    dependencies: Course[]
 }

@@ -1,3 +1,4 @@
+import { CreateCourseInput } from './../inputs/CreateCourseInput';
 // src/resolvers/CourseResolver.ts
 
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
@@ -10,31 +11,32 @@ export class CourseResolver {
   @Query(() => [Course])
     allCourses() {
       return Course.find()
+  }
+
+  @Query(() => [Course])
+    async returnDependentCourses(@Arg("course_id") course_number:string) {
+      const currentCourse = await Course.findOne({ course_number: course_number });
+      if(!currentCourse) throw new Error("Course does not exist in our list!");
+      const deps = currentCourse.dependencies;
+      return deps;
+  }
+
+  @Query(() => [Course])
+    async returnPrerequisiteCourses(@Arg("course_id") course_number:string) {
+      const currentCourse = await Course.findOne({ course_number: course_number });
+      if(!currentCourse) throw new Error("Course does not exist in our list!");
+      const deps = currentCourse.prerequisites;
+      return deps;
+  }
+  
+  @Mutation(() => Course)
+  async addCourse(@Arg("course") courseInput: CreateCourseInput) {
+    if (courseInput.prerequisiteCourseNumbers) {
+      for(const prerequisite of courseInput.prerequisiteCourseNumbers) {
+        const prereq = await Course.find({where: {course_number: prerequisite}});
+        if(!prereq) throw new Error("Prerequisite course does not exist in our list!");
     }
-//   @Mutation(() => Course)
-//   async createCourse(@Arg("data") data: CreateCourseInput) {
-//     const Course = Course.create(data);
-//     await Course.save();
-//     return Course;
-//   }
-//   @Query(() => Course)
-//     Course(@Arg("unique_Addres_id") unique_Addres_id: string) {
-//       return Course.findOne({ where: { unique_Addres_id } });
-//   }
-//   @Mutation(() => Course)
-//   async updateCourse(@Arg("unique_Addres_id") unique_Course_id: string, @Arg("data") data: UpdateCourseInput) {
-//     const Course = await Course.findOne({ where: { unique_Course_id } });
-//     if (!Course) throw new Error("Course not found!");
-//     Object.assign(Course, data);
-//     await Course.save();
-//     return Course;
-//   }
-//   @Mutation(() => Course)
-//   async deleteCourse(@Arg("unique_Addres_id") unique_Course_id: string) {
-//     const Course = await Course.findOne({ where: { unique_Course_id } });
-//     if (!Course) throw new Error("Course not found!");
-//     await Course.remove();
-//     // Fetch removed Course
-//     return Course;
-//   }
+    }
+  }
+  
 }
