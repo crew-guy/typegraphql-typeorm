@@ -18,7 +18,10 @@ export class User extends BaseEntity{
     
     @Field()
     @Column("varchar", { length: 255, unique:true })
-    email:string
+    email: string
+    
+    @Field()
+    name:string
     
     @Column()
     password:string
