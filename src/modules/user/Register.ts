@@ -9,10 +9,10 @@ export class RegisterResolver{
         return "Hello World!";
     }
 
-    @FieldResolver()
-    async name(@Root() parent: User) {
-        return `${parent.firstName} ${parent.lastName}`
-    }
+    // @FieldResolver()
+    // async name(@Root() parent: User) {
+    //     return `${parent.firstName} ${parent.lastName}`
+    // }
 
     @Mutation(() => String)
     async registerUser(

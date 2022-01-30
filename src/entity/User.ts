@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from "type-graphql";
+import { Field, ID, ObjectType, Root } from "type-graphql";
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users")
@@ -20,8 +20,14 @@ export class User extends BaseEntity{
     @Column("varchar", { length: 255, unique:true })
     email: string
     
+    //* Example code when we were using @FieldResolver
+    // @Field()
+    // name:string
+
     @Field()
-    name:string
+    name(@Root() parent:User): string{
+        return `${parent.firstName} ${parent.lastName}`
+    }
     
     @Column()
     password:string
