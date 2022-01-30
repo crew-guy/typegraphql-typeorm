@@ -6,11 +6,15 @@
   "author": "ankit <ankit.sanghavi87@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^3.4.0",
+    "apollo-server-core": "^3.6.2",
+    "apollo-server-express": "^3.6.2",
     "autoprefixer": "^9.8.6",
+    "bcryptjs": "^2.4.3",
     "class-validator": "^0.13.2",
     "dotenv": "^14.2.0",
-    "graphql": "15.7.2",
+    "express": "^4.17.2",
+    "graphql": "^15.3.0",
+    "mixpanel": "^0.14.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.4.0",
@@ -21,12 +25,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "SET NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
+    "start": "SET NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
     "start:win": "SET NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
     "start:mac": "export NODE_ENV=development&& ts-node-dev --respawn ./index.ts",
     "emulate:prod": "SET NODE_ENV=production&& nodemon -w src --ext ts-node ./index.ts",
     "produce": "ts-node ./index.ts"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.5"
   }

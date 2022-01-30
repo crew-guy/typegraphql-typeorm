@@ -1,11 +1,19 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { ApolloServer } from "apollo-server";
+
+// Setting up apollo & express server in parallel
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
+import express from 'express';
+import http from 'http';
+
+// 
 import { buildSchema,emitSchemaDefinitionFile } from 'type-graphql'
 import { cloudDB, localDB } from "./db";
-import { CourseResolver } from "./src/resolvers/CourseResolver";
 
 // import resolvers
+import { CourseResolver } from "./src/resolvers/CourseResolver";
+
 const defaultConfig = {
   synchronize: true,
   ssl: {
@@ -16,6 +24,10 @@ const defaultConfig = {
 }
 
 async function main() {
+  // Required logic for integrating with Express
+  const app = express();
+  const httpServer = http.createServer(app);
+
   const dbCredentials = process.env.NODE_ENV !== "development" ? cloudDB : localDB
   const sslVal = process.env.NODE_ENV !== "development" ? {rejectUnauthorized:false}:false
   try {
@@ -31,12 +43,22 @@ async function main() {
     const schema = await buildSchema({
         resolvers: [
           CourseResolver
-      ]
+        ]
     })
     await emitSchemaDefinitionFile("./schema.gql", schema);
-    const server = new ApolloServer({ schema })
-    await server.listen(8080)
-    console.log("Server has started!")
+    const server = new ApolloServer({ schema, plugins:[ApolloServerPluginDrainHttpServer({ httpServer })] })
+    // More required logic for integrating with Express
+    await server.start();
+    server.applyMiddleware({
+      app,
+
+      // By default, apollo-server hosts its GraphQL endpoint at the
+      // server root. However, *other* Apollo Server packages host it at
+      // /graphql. Optionally provide this to match apollo-server.
+      path: '/'
+    });
+    await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
   } catch (error) {
     console.log(error)
     console.log('life is hard')
