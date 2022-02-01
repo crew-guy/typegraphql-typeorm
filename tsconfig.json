@@ -1,5 +1,4 @@
 {
-	"extends": "./tsconfig.paths.json",
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
@@ -13,5 +12,6 @@
 		"rootDir": "src"
 	},
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.tsx", "./src/**/*.ts"]
+	"include": ["./src/**/*.tsx", "./src/**/*.ts"],
+	"extends": "./tsconfig.paths.json"
 }

@@ -21,7 +21,7 @@ const defaultConfig = {
     rejectUnauthorized:false
   },
   logging: true,
-  entities: ["src/entity/*.*"]
+  entities: ["./src/entity/*.*"]
 }
 
 async function main() {
