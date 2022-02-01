@@ -8,13 +8,21 @@ import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
 
-// 
+// For building the GQL schema
 import { buildSchema,emitSchemaDefinitionFile } from 'type-graphql'
+
+// For different database connections in diff environments
 import { cloudDB, localDB } from "./db";
+
+// Setting up redis
+import session from 'express-session'
+import connectRedis from 'connect-redis'
+import {redis } from './redis'
 
 // import resolvers
 import { CourseResolver } from "./src/resolvers/CourseResolver";
 import { RegisterResolver } from './src/modules/user/Register';
+import { formatError } from "graphql";
 
 const defaultConfig = {
   synchronize: true,
@@ -25,11 +33,8 @@ const defaultConfig = {
   entities: ["src/entity/*.*"]
 }
 
-async function main() {
-  // Required logic for integrating with Express
-  const app = express();
-  const httpServer = http.createServer(app);
 
+async function main() {
   const dbCredentials = process.env.NODE_ENV !== "development" ? cloudDB : localDB
   const sslVal = process.env.NODE_ENV !== "development" ? {rejectUnauthorized:false}:false
   try {
@@ -49,10 +54,38 @@ async function main() {
         ]
     })
     await emitSchemaDefinitionFile("./schema.gql", schema);
-    const server = new ApolloServer({ schema, plugins:[ApolloServerPluginDrainHttpServer({ httpServer })] })
     // More required logic for integrating with Express
-    await server.start();
-    server.applyMiddleware({
+    
+    // Required logic for integrating with Express
+    const app = express();
+    // Logic for integrating express session with redis
+    const RedisStore = connectRedis(session);
+    const httpServer = http.createServer(app);
+
+    const apolloServer = new ApolloServer({
+      schema,
+      context:({req,res}:any)=>({req,res}),
+      plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    })
+    app.use(
+      session({
+        store: new RedisStore({
+          client: redis as any,
+        }),
+        name: "qid",
+        secret: "aslkdfjoiq12312",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 1000 * 3600 * 24 * 7 * 365 // 7 years
+        }
+      })
+    )
+
+    await apolloServer.start();
+    apolloServer.applyMiddleware({
       app,
 
       // By default, apollo-server hosts its GraphQL endpoint at the
