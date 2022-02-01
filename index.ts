@@ -80,7 +80,8 @@ async function main() {
 
     app.use(cors({
       credentials: true,
-      origin: "*"
+      origin:["https://studio.apollographql.com","http://localhost:4000/"]
+      // origin: process.env.NODE_ENV ==="development" ? "https://studio.apollographql.com":"*"
     }))
 
     app.use(
@@ -90,7 +91,7 @@ async function main() {
         }),
         name: "qid",
         // TODO : Make this an env var
-        secret: process.env.REDIS_SECRET!,
+        secret: "process.env.REDIS_SECRET!",
         resave: false,
         saveUninitialized: false,
         cookie: {
