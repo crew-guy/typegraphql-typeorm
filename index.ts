@@ -13,6 +13,7 @@ import { cloudDB, localDB } from "./db";
 
 // import resolvers
 import { CourseResolver } from "./src/resolvers/CourseResolver";
+import { RegisterResolver } from './src/modules/user/Register';
 
 const defaultConfig = {
   synchronize: true,
@@ -42,7 +43,8 @@ async function main() {
     })
     const schema = await buildSchema({
         resolvers: [
-          CourseResolver
+          CourseResolver,
+          RegisterResolver
         ]
     })
     await emitSchemaDefinitionFile("./schema.gql", schema);
