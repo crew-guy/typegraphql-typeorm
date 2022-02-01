@@ -27,7 +27,7 @@ input CreateCourseInput {
 
 type Mutation {
   addCourse(course: CreateCourseInput!): Course!
-  registerUser(data: RegisterInput!): String!
+  register(data: RegisterInput!): User!
 }
 
 type Query {
@@ -42,4 +42,12 @@ input RegisterInput {
   firstName: String!
   lastName: String!
   password: String!
+}
+
+type User {
+  email: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  name: String!
 }

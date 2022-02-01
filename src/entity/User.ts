@@ -19,7 +19,7 @@ export class User extends BaseEntity{
     lastName:string
     
     @Field()
-    @Column("varchar", { length: 255, unique:true })
+    @Column("varchar", { length: 255 })
     email: string
     
     //* Example code when we were using @FieldResolver
