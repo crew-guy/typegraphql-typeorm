@@ -8,8 +8,7 @@
 		"emitDecoratorMetadata": true,
 		"baseUrl": ".",
 		"allowSyntheticDefaultImports": true,
-		"strictPropertyInitialization": false,
-		"rootDir": "src"
+		"strictPropertyInitialization": false
 	},
 	"exclude": ["node_modules"],
 	"include": ["./src/**/*.tsx", "./src/**/*.ts"],

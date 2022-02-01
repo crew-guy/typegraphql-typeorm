@@ -27,10 +27,19 @@ input CreateCourseInput {
 
 type Mutation {
   addCourse(course: CreateCourseInput!): Course!
+  registerUser(data: RegisterInput!): String!
 }
 
 type Query {
   allCourses: [Course!]!
+  hello: String!
   returnDependentCourses(course_id: String!): [Course!]!
   returnPrerequisiteCourses(course_id: String!): [Course!]!
+}
+
+input RegisterInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
 }

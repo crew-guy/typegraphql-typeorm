@@ -21,7 +21,7 @@ const defaultConfig = {
     rejectUnauthorized:false
   },
   logging: true,
-  entities: ["./src/entity/*.*"]
+  entities: ["src/entity/*.*"]
 }
 
 async function main() {
@@ -32,7 +32,7 @@ async function main() {
   const dbCredentials = process.env.NODE_ENV !== "development" ? cloudDB : localDB
   const sslVal = process.env.NODE_ENV !== "development" ? {rejectUnauthorized:false}:false
   try {
-    const connection = await createConnection({
+    const _ = await createConnection({
       ...dbCredentials,
       synchronize: true,
       type: "postgres",
