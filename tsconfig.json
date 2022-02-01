@@ -3,20 +3,25 @@
 		"target": "es5",
 		"module": "commonjs",
 		"strict": true,
+		"lib": ["dom", "dom.iterable", "esnext"],
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"baseUrl": "./",
+		"allowJs": true,
 		"forceConsistentCasingInFileNames": true,
 		"importHelpers": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
 		"removeComments": true,
 		"allowSyntheticDefaultImports": true,
 		"strictPropertyInitialization": false,
 		"paths": {
-			"@entity/*": ["src/entity/*"],
-			"@modules/*": ["src/modules/*"]
+			"@entity/*": ["./src/entity/*"],
+			"@modules/*": ["./src/modules/*"]
 		}
 	},
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.tsx", "./src/**/*.ts"]
+	"include": ["./"]
 }

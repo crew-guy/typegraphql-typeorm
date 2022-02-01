@@ -34,11 +34,30 @@ export class Course extends BaseEntity{
     @Column()
     credits: number;
 
+    
     @Field(() => [Course])
     @OneToMany(type => Course, course => course.prerequisites)
     prerequisites: Course[]
-
+    
     @Field(() => [Course])
     @OneToMany(type => Course, course => course.dependencies)
     dependencies: Course[]
+
+    // TODO: Following fields need to be modified & updated to actual values later on
+
+    // @Field(() => Number)
+    // @Column()
+    // numAvailSeats:number;
+
+    // @Field(() => Number)
+    // @Column()
+    // numReservedSeats:number;
+
+    // @Field(() => [String])
+    // @Column()
+    // comments:string[];
+
+    // @Field(() => String)
+    // @Column()
+    // slot:string;
 }

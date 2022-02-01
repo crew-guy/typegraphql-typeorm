@@ -1,3 +1,5 @@
+// TODO : Set up module aliasing
+import { User } from "../../../entity/User";
 import {
     registerDecorator,
     ValidationOptions,
@@ -5,7 +7,6 @@ import {
     ValidatorConstraintInterface
   } from "class-validator";
   
-import { User } from "@entity/User";
 
 @ValidatorConstraint({ async: true })
 export class IsEmailAlreadyExistConstraint

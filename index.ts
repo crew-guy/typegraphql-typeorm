@@ -1,3 +1,4 @@
+
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import 'module-alias/register';
@@ -22,9 +23,14 @@ import {redis } from './redis'
 // import resolvers
 import { CourseResolver } from "./src/resolvers/CourseResolver";
 import { RegisterResolver } from './src/modules/user/Register';
+import { MeResolver } from './src/modules/user/Me';
+import { LoginResolver } from './src/modules/user/Login';
 
 // cors
 import cors from 'cors'
+
+// import environment variables
+require('dotenv').config()
 
 const defaultConfig = {
   synchronize: true,
@@ -52,7 +58,9 @@ async function main() {
     const schema = await buildSchema({
         resolvers: [
           CourseResolver,
-          RegisterResolver
+          RegisterResolver,
+          LoginResolver,
+          MeResolver
         ]
     })
     await emitSchemaDefinitionFile("./schema.gql", schema);
@@ -81,7 +89,7 @@ async function main() {
           client: redis as any,
         }),
         name: "qid",
-        secret: "aslkdfjoiq12312",
+        secret: "process.env.REDIS_SECRET",
         resave: false,
         saveUninitialized: false,
         cookie: {

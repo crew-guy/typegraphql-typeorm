@@ -5,6 +5,7 @@
   "repository": "https://github.com/Fallow-Inc/courseplanner-backend.git",
   "author": "ankit <ankit.sanghavi87@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "apollo-server-core": "^3.6.2",
     "apollo-server-express": "^3.6.2",
