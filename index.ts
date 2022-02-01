@@ -80,7 +80,7 @@ async function main() {
 
     app.use(cors({
       credentials: true,
-      origin: "http://localhost:3000"
+      origin: "*"
     }))
 
     app.use(
@@ -89,7 +89,8 @@ async function main() {
           client: redis as any,
         }),
         name: "qid",
-        secret: "process.env.REDIS_SECRET",
+        // TODO : Make this an env var
+        secret: process.env.REDIS_SECRET!,
         resave: false,
         saveUninitialized: false,
         cookie: {
