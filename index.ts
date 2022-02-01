@@ -22,7 +22,9 @@ import {redis } from './redis'
 // import resolvers
 import { CourseResolver } from "./src/resolvers/CourseResolver";
 import { RegisterResolver } from './src/modules/user/Register';
-import { formatError } from "graphql";
+
+// cors
+import cors from 'cors'
 
 const defaultConfig = {
   synchronize: true,
@@ -67,6 +69,12 @@ async function main() {
       context:({req,res}:any)=>({req,res}),
       plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     })
+
+    app.use(cors({
+      credentials: true,
+      origin: "http://localhost:3000"
+    }))
+
     app.use(
       session({
         store: new RedisStore({
@@ -87,14 +95,13 @@ async function main() {
     await apolloServer.start();
     apolloServer.applyMiddleware({
       app,
-
       // By default, apollo-server hosts its GraphQL endpoint at the
       // server root. However, *other* Apollo Server packages host it at
       // /graphql. Optionally provide this to match apollo-server.
       path: '/'
     });
     await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+    console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
   } catch (error) {
     console.log(error)
     console.log('life is hard')
