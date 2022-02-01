@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
+import 'module-alias/register';
 
 // Setting up apollo & express server in parallel
 import { ApolloServer } from "apollo-server-express";

@@ -1,13 +1,6 @@
 {
 	"compilerOptions": {
-		"forceConsistentCasingInFileNames": true,
-		"importHelpers": true,
-		"removeComments": true,
 		"strict": true,
-		"baseUrl": "./",
-		"paths": {
-			"@entity/*": ["./src/entity/*"],
-			"@modules/*": ["./src/modules/*"]
-		}
+		"baseUrl": "./"
 	}
 }
