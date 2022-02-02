@@ -39,6 +39,7 @@ type Query {
   me: User
   returnDependentCourses(course_id: String!): [Course!]!
   returnPrerequisiteCourses(course_id: String!): [Course!]!
+  testhello: String!
 }
 
 input RegisterInput {
