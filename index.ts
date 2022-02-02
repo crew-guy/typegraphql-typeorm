@@ -21,16 +21,8 @@ import session from 'express-session'
 import connectRedis from 'connect-redis'
 import {redis } from './redisdb'
 
-// import resolvers
-import { CourseResolver } from "./src/resolvers/CourseResolver";
-import { RegisterResolver } from './src/modules/user/Register';
-import { MeResolver } from './src/modules/user/Me';
-import { LoginResolver } from './src/modules/user/Login';
-
 // cors
 import cors from 'cors'
-import sendEmail from "./src/modules/utils/sendEmail";
-import { createConfirmationUrl } from "src/modules/utils/createConfirmationUrl";
 
 // import environment variables
 require('dotenv').config()
@@ -59,13 +51,7 @@ async function main() {
       entities: ["src/entity/*.*"]
     })
     const schema = await buildSchema({
-        resolvers: [
-          CourseResolver,
-          RegisterResolver,
-          LoginResolver,
-          MeResolver,
-          ConfirmResolver
-      ],
+        resolvers: [__dirname + "/modules/**/*.ts"],
       authChecker:  ({ context :{req}},roles,) => {
         // here we can read the user from context
         // and check the user's permission in the db against the `roles` argument
