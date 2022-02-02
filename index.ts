@@ -78,6 +78,12 @@ async function main() {
       plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     })
 
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "https://studio.apollographql.com"); // update to match the domain you will make the request from
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
+
     app.use(cors({
       credentials: true,
       origin:["https://studio.apollographql.com","http://localhost:4000/"]
@@ -108,7 +114,7 @@ async function main() {
       // By default, apollo-server hosts its GraphQL endpoint at the
       // server root. However, *other* Apollo Server packages host it at
       // /graphql. Optionally provide this to match apollo-server.
-      path: '/'
+      path: '/graphql'
     });
     await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
     console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
