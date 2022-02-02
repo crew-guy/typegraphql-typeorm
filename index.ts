@@ -1,4 +1,8 @@
-import { ConfirmResolver } from './src/modules/user/ConfirmResolver';
+import { RegisterResolver } from './src/modules/user/RegisterResolver';
+import { LoginResolver } from './src/modules/user/LoginResolver';
+import { MeResolver } from './src/modules/user/MeResolver';
+import { ConfirmResolver } from './src/modules/user/ConfirmUserResolver';
+import { ForgotPasswordResolver } from 'src/modules/user/ForgotPasswordResolver';
 
 import "reflect-metadata";
 import { createConnection } from "typeorm";
@@ -51,7 +55,15 @@ async function main() {
       entities: ["src/entity/*.*"]
     })
     const schema = await buildSchema({
-        resolvers: [__dirname + "/modules/**/*.ts"],
+      // TODO : Use this to add resolvers
+      // resolvers: [__dirname + "/modules/**/Resolver.ts"],
+      resolvers: [
+        ConfirmResolver,
+        MeResolver,
+        LoginResolver,
+        RegisterResolver,
+        ForgotPasswordResolver
+      ],
       authChecker:  ({ context :{req}},roles,) => {
         // here we can read the user from context
         // and check the user's permission in the db against the `roles` argument

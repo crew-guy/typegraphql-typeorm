@@ -2,6 +2,7 @@ import { redis } from "../../../redisdb";
 import { MyContext } from "src/types/MyContext";
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import { User } from "../../entity/User";
+import { confirmUserPrefix } from "../constants/userPrefixes";
 
 @Resolver()
 export class ConfirmResolver{
@@ -10,7 +11,7 @@ export class ConfirmResolver{
         @Arg("token") token: string,
         @Ctx() ctx: MyContext
     ) {
-        const userId = await redis.get(token);
+        const userId = await redis.get(confirmUserPrefix + token);
         if (!userId) {
             return false;
         }
