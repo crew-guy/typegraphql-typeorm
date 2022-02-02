@@ -1,0 +1,258 @@
+{
+    "info": {
+        "_postman_id": "de9394f4-d80a-45ff-a290-94d4b44e3e72",
+        "name": "Saraswati",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "mutations",
+            "item": [
+                {
+                    "name": "addCourse",
+                    "id": "c5c51c91-3351-43f6-83ef-c4b088b5c913",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation addCourse ($course: CreateCourseInput!) {\n    addCourse (course: $course) {\n        course_name\n        course_number\n        course_uuid\n        credits\n        dependencies {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n            }\n        }\n        institute_id\n        instructor_name\n        online_link\n        prerequisites {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n            }\n        }\n    }\n}",
+                                "variables": "{\n  \"course\": {\n    \"course_name\": \"\",\n    \"course_number\": \"\",\n    \"credits\": \"\",\n    \"institute_id\": \"\",\n    \"instructor_name\": \"\",\n    \"online_link\": \"\",\n    \"prerequisiteCourseNumbers\": [\n      \"\"\n    ]\n  }\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "confirmUserRegistration",
+                    "id": "2adffdb1-a747-4b2d-8674-72f2f57933b4",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation confirmUserRegistration ($token: String!) {\n    confirmUserRegistration (token: $token)\n}",
+                                "variables": "{\n  \"token\": \"2449a24d-7c24-41d6-a11d-0f38613d6096\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{localUrl}}",
+                            "host": [
+                                "{{localUrl}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "login",
+                    "id": "19042f8a-e1d7-46bc-9f31-4edb542e943c",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation login ($email: String!, $password: String!) {\n    login (email: $email, password: $password) {\n        email\n        firstName\n        id\n        lastName\n        name\n    }\n}",
+                                "variables": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{localUrl}}",
+                            "host": [
+                                "{{localUrl}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "register",
+                    "id": "ca6fe866-744a-4fc8-90a2-5e6913973d49",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation register ($data: RegisterInput!) {\n    register (data: $data) {\n        email\n        firstName\n        id\n        lastName\n        name\n    }\n}",
+                                "variables": "{\n  \"data\": {\n    \"email\": \"user3@gmail.com\",\n    \"firstName\": \"user3\",\n    \"lastName\": \"gmail3\",\n    \"password\": \"1234567890\"\n  }\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{localUrl}}",
+                            "host": [
+                                "{{localUrl}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "af03fb42-1373-4314-be8b-64a69b205fa9"
+        },
+        {
+            "name": "queries",
+            "item": [
+                {
+                    "name": "allCourses",
+                    "id": "a3e2a3be-77a7-4c48-af3b-e80f3c227a22",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query allCourses {\n    allCourses {\n        course_name\n        course_number\n        course_uuid\n        credits\n        dependencies {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n            }\n        }\n        institute_id\n        instructor_name\n        online_link\n        prerequisites {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n            }\n        }\n    }\n}",
+                                "variables": "{}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "hello",
+                    "id": "2b0a1e8e-47bb-4958-b62a-380b84f0fb34",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query hello {\n    hello\n}",
+                                "variables": "{}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "me",
+                    "id": "e328d184-dc75-4db4-b396-a7c32044b6e6",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query me {\n    me {\n        email\n        firstName\n        id\n        lastName\n        name\n    }\n}",
+                                "variables": "{}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "returnDependentCourses",
+                    "id": "864a1534-cd44-46f2-a604-3b6d33b9e019",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query returnDependentCourses ($course_id: String!) {\n    returnDependentCourses (course_id: $course_id) {\n        course_name\n        course_number\n        course_uuid\n        credits\n        dependencies {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n            }\n        }\n        institute_id\n        instructor_name\n        online_link\n        prerequisites {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n            }\n        }\n    }\n}",
+                                "variables": "{\n  \"course_id\": \"\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "returnPrerequisiteCourses",
+                    "id": "f120f404-e484-4045-8a9b-bc16bd2e658b",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query returnPrerequisiteCourses ($course_id: String!) {\n    returnPrerequisiteCourses (course_id: $course_id) {\n        course_name\n        course_number\n        course_uuid\n        credits\n        dependencies {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                }\n            }\n        }\n        institute_id\n        instructor_name\n        online_link\n        prerequisites {\n            course_name\n            course_number\n            course_uuid\n            credits\n            dependencies {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n                prerequisites {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n            }\n            institute_id\n            instructor_name\n            online_link\n            prerequisites {\n                course_name\n                course_number\n                course_uuid\n                credits\n                dependencies {\n                    course_name\n                    course_number\n                    course_uuid\n                    credits\n                    dependencies {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                    institute_id\n                    instructor_name\n                    online_link\n                    prerequisites {\n                        course_name\n                        course_number\n                        course_uuid\n                        credits\n                        institute_id\n                        instructor_name\n                        online_link\n                    }\n                }\n                institute_id\n                instructor_name\n                online_link\n            }\n        }\n    }\n}",
+                                "variables": "{\n  \"course_id\": \"\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "{{url}}",
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "36e1b286-230b-41e7-a705-12d21eb699f5"
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "7791a527-a794-4e08-ba7c-0674177fa6e5",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "883b04e3-22bd-4f33-a33f-b584679ff4d8",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "id": "c945dfe7-1c93-4b91-a239-0bd5c1abc9af",
+            "key": "localUrl",
+            "value": "http://localhost:4000/graphql",
+            "type": "any"
+        }
+    ]
+}
