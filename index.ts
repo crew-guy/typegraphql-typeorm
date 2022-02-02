@@ -56,14 +56,14 @@ async function main() {
     })
     const schema = await buildSchema({
       // TODO : Use this to add resolvers
-      // resolvers: [__dirname + "/modules/**/Resolver.ts"],
-      resolvers: [
-        ConfirmResolver,
-        MeResolver,
-        LoginResolver,
-        RegisterResolver,
-        ForgotPasswordResolver
-      ],
+      resolvers: [__dirname + "/src/modules/**/*.ts"],
+      // resolvers: [
+      //   ConfirmResolver,
+      //   MeResolver,
+      //   LoginResolver,
+      //   RegisterResolver,
+      //   ForgotPasswordResolver
+      // ],
       authChecker:  ({ context :{req}},roles,) => {
         // here we can read the user from context
         // and check the user's permission in the db against the `roles` argument

@@ -10,7 +10,7 @@ export class ConfirmResolver{
     async confirmUserRegistration(
         @Arg("token") token: string,
         @Ctx() ctx: MyContext
-    ) {
+    ):Promise<boolean> {
         const userId = await redis.get(confirmUserPrefix + token);
         if (!userId) {
             return false;

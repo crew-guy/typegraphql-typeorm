@@ -34,7 +34,8 @@ export class RegisterResolver {
       password: hashedPassword
     }).save();
 
-    sendEmail(email, createConfirmationUrl((user.id).toString()))
+    const confirmUrl = await  createConfirmationUrl((user.id).toString())
+    await sendEmail(email,confirmUrl)
     return user;
   }
 }
