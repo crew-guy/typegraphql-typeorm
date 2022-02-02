@@ -8,7 +8,7 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class User extends BaseEntity{
     @Field(()=>ID)
     @PrimaryGeneratedColumn()
-    id: string
+    id: number
     
     @Field()
     @Column("varchar", { length: 255 })
@@ -32,5 +32,8 @@ export class User extends BaseEntity{
     }
     
     @Column()
-    password:string
+    password: string
+    
+    @Column("bool", { default: true })
+    confirmed: boolean
 }

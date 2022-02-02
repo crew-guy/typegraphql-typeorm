@@ -16,13 +16,7 @@
 		"isolatedModules": true,
 		"removeComments": true,
 		"allowSyntheticDefaultImports": true,
-		"strictPropertyInitialization": false,
-		"paths": {
-			"@entity/*": ["./src/entity/*"],
-			"@modules/*": ["./src/modules/*"],
-			"@utils/*": ["./src/modules/utils/*"],
-			"@middleware/*": ["./src/modules/middleware/*"]
-		}
+		"strictPropertyInitialization": false
 	},
 	"exclude": ["node_modules"],
 	"include": ["./"]

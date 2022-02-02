@@ -18,7 +18,7 @@ import { cloudDB, localDB } from "./db";
 // Setting up redis
 import session from 'express-session'
 import connectRedis from 'connect-redis'
-import {redis } from './redis'
+import {redis } from './redisdb'
 
 // import resolvers
 import { CourseResolver } from "./src/resolvers/CourseResolver";
