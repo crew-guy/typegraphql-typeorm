@@ -19,7 +19,9 @@
 		"strictPropertyInitialization": false,
 		"paths": {
 			"@entity/*": ["./src/entity/*"],
-			"@modules/*": ["./src/modules/*"]
+			"@modules/*": ["./src/modules/*"],
+			"@utils/*": ["./src/modules/utils/*"],
+			"@middleware/*": ["./src/modules/middleware/*"]
 		}
 	},
 	"exclude": ["node_modules"],
