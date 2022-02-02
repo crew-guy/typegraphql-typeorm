@@ -61,7 +61,13 @@ async function main() {
           RegisterResolver,
           LoginResolver,
           MeResolver
-        ]
+      ],
+      authChecker:  ({ context :{req}},roles,) => {
+        // here we can read the user from context
+        // and check the user's permission in the db against the `roles` argument
+        // that comes from the `@Authorized` decorator, eg. ["ADMIN", "MODERATOR"]
+        return !!req.session.userId; // or false if access is denied
+      }
     })
     await emitSchemaDefinitionFile("./schema.gql", schema);
     // More required logic for integrating with Express
@@ -77,17 +83,9 @@ async function main() {
       context:({req,res}:any)=>({req,res}),
       plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     })
-
-    app.use(function(req, res, next) {
-      res.header("Access-Control-Allow-Origin", "https://studio.apollographql.com"); // update to match the domain you will make the request from
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-      next();
-    });
-
     app.use(cors({
       credentials: true,
-      origin:["https://studio.apollographql.com","http://localhost:4000/"]
-      // origin: process.env.NODE_ENV ==="development" ? "https://studio.apollographql.com":"*"
+      origin: process.env.NODE_ENV ==="development" ? "http://localhost:3000":"*"
     }))
 
     app.use(
