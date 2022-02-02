@@ -3,15 +3,42 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Course {
+  course_name: String!
+  course_number: String!
+  course_uuid: String!
+  credits: Float!
+  dependencies: [Course!]!
+  institute_id: String!
+  instructor_name: String!
+  online_link: String!
+  prerequisites: [Course!]!
+}
+
+input CreateCourseInput {
+  course_name: String!
+  course_number: String!
+  credits: Float!
+  institute_id: String!
+  instructor_name: String!
+  online_link: String!
+  prerequisiteCourseNumbers: [String!]
+}
+
 type Mutation {
+  addCourse(course: CreateCourseInput!): Course!
   confirmUserRegistration(token: String!): Boolean!
+  forgotPassword(email: String!): Boolean!
   login(email: String!, password: String!): User
   register(data: RegisterInput!): User!
 }
 
 type Query {
+  allCourses: [Course!]!
   hello: String!
   me: User
+  returnDependentCourses(course_id: String!): [Course!]!
+  returnPrerequisiteCourses(course_id: String!): [Course!]!
 }
 
 input RegisterInput {
