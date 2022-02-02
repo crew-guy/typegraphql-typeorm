@@ -29,6 +29,7 @@ import { LoginResolver } from './src/modules/user/Login';
 // cors
 import cors from 'cors'
 import sendEmail from "./src/modules/utils/sendEmail";
+import { createConfirmationUrl } from "src/modules/utils/createConfirmationUrl";
 
 // import environment variables
 require('dotenv').config()
@@ -117,7 +118,6 @@ async function main() {
     });
     await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
     console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
-    sendEmail("theankitsanghvi@gmail.com", 'https://google.com')
   } catch (error) {
     console.log(error)
     console.log('life is hard')
