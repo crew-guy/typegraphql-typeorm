@@ -1,3 +1,4 @@
+import { ConfirmResolver } from './src/modules/user/ConfirmResolver';
 
 import "reflect-metadata";
 import { createConnection } from "typeorm";
@@ -62,7 +63,8 @@ async function main() {
           CourseResolver,
           RegisterResolver,
           LoginResolver,
-          MeResolver
+          MeResolver,
+          ConfirmResolver
       ],
       authChecker:  ({ context :{req}},roles,) => {
         // here we can read the user from context

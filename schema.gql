@@ -27,6 +27,7 @@ input CreateCourseInput {
 
 type Mutation {
   addCourse(course: CreateCourseInput!): Course!
+  confirmUserRegistration(token: String!): Boolean!
   login(email: String!, password: String!): User
   register(data: RegisterInput!): User!
 }
