@@ -33,6 +33,9 @@
                 {
                     "name": "confirmUserRegistration",
                     "id": "2adffdb1-a747-4b2d-8674-72f2f57933b4",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
                     "request": {
                         "method": "POST",
                         "header": [],
@@ -40,13 +43,13 @@
                             "mode": "graphql",
                             "graphql": {
                                 "query": "mutation confirmUserRegistration ($token: String!) {\n    confirmUserRegistration (token: $token)\n}",
-                                "variables": "{\n  \"token\": \"\"\n}"
+                                "variables": "{\n  \"token\": \"2449a24d-7c24-41d6-a11d-0f38613d6096\"\n}"
                             }
                         },
                         "url": {
-                            "raw": "{{url}}",
+                            "raw": "{{localUrl}}",
                             "host": [
-                                "{{url}}"
+                                "{{localUrl}}"
                             ]
                         }
                     },
@@ -55,6 +58,9 @@
                 {
                     "name": "login",
                     "id": "19042f8a-e1d7-46bc-9f31-4edb542e943c",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
                     "request": {
                         "method": "POST",
                         "header": [],
@@ -66,9 +72,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{url}}",
+                            "raw": "{{localUrl}}",
                             "host": [
-                                "{{url}}"
+                                "{{localUrl}}"
                             ]
                         }
                     },
@@ -77,6 +83,9 @@
                 {
                     "name": "register",
                     "id": "ca6fe866-744a-4fc8-90a2-5e6913973d49",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
                     "request": {
                         "method": "POST",
                         "header": [],
@@ -84,13 +93,13 @@
                             "mode": "graphql",
                             "graphql": {
                                 "query": "mutation register ($data: RegisterInput!) {\n    register (data: $data) {\n        email\n        firstName\n        id\n        lastName\n        name\n    }\n}",
-                                "variables": "{\n  \"data\": {\n    \"email\": \"\",\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"password\": \"\"\n  }\n}"
+                                "variables": "{\n  \"data\": {\n    \"email\": \"user3@gmail.com\",\n    \"firstName\": \"user3\",\n    \"lastName\": \"gmail3\",\n    \"password\": \"1234567890\"\n  }\n}"
                             }
                         },
                         "url": {
-                            "raw": "{{url}}",
+                            "raw": "{{localUrl}}",
                             "host": [
-                                "{{url}}"
+                                "{{localUrl}}"
                             ]
                         }
                     },
@@ -216,13 +225,34 @@
             "id": "36e1b286-230b-41e7-a705-12d21eb699f5"
         }
     ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "7791a527-a794-4e08-ba7c-0674177fa6e5",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "883b04e3-22bd-4f33-a33f-b584679ff4d8",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
     "variable": [
         {
-            "id": "url",
-            "key": "url",
-            "value": "",
-            "type": "any",
-            "description": "URL for the request."
+            "id": "c945dfe7-1c93-4b91-a239-0bd5c1abc9af",
+            "key": "localUrl",
+            "value": "http://localhost:4000/graphql",
+            "type": "any"
         }
     ]
 }
