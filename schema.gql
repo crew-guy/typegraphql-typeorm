@@ -30,7 +30,7 @@ type Mutation {
   confirmUserRegistration(token: String!): Boolean!
   forgotPassword(email: String!): Boolean!
   login(email: String!, password: String!): User
-  register(data: RegisterInput!): User!
+  register(data: RegisterInput!): User!x  
 }
 
 type Query {
