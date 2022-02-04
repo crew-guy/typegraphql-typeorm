@@ -5,24 +5,24 @@ import { redis } from '../../../redisdb';
 import { Arg, Ctx, Mutation } from 'type-graphql';
 import { Resolver } from 'type-graphql';
 import { MyContext } from 'src/types/MyContext';
+import { UpdatePasswordInput } from './register/UpdatePasswordInput';
 
 @Resolver()
-export class ChangePasswordResolver{
-    @Mutation(() => User)
+export class ChangePasswordResolver {
+    @Mutation(() => User, { nullable: true })
     async changePassword(
-        @Arg("token") token: string,
-        @Arg("newPassword") newPassword: string,
+        @Arg("data") {token, password}: UpdatePasswordInput,
         @Ctx() ctx: MyContext
     ):Promise<User|null> {
         const userId = await redis.get(forgotPasswordPrefix + token)
         if (!userId) {
             return null;
         }
-        const user = await User.findOne(10)
+        const user = await User.findOne(userId)
         if (!user) {
             return null;
         }
-        user.password = await bcrypt.hash(newPassword, 12)
+        user.password = await bcrypt.hash(password, 12)
 
         await user.save();
         (ctx.req.session as any)!.userId = user.id;
