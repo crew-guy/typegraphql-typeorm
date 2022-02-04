@@ -1,5 +1,5 @@
 import { IsEmail, Length } from "class-validator";
-import { PasswordInput } from "src/modules/utils/PasswordInput";
+import { PasswordInput } from "../../utils/PasswordInput";
 import { Field, InputType } from "type-graphql";
 import { IsEmailAlreadyExist } from "./isEmailAlreadyExist";
 

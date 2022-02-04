@@ -27,11 +27,15 @@ input CreateCourseInput {
 
 type Mutation {
   addCourse(course: CreateCourseInput!): Course!
-  changePassword(newPassword: String!, token: String!): User
+  changePassword(data: UpdatePasswordInput!): User
   confirmUserRegistration(token: String!): Boolean!
   forgotPassword(email: String!): Boolean!
   login(email: String!, password: String!): User
   register(data: RegisterInput!): User!
+}
+
+input PasswordInput {
+  password: String!
 }
 
 type Query {
@@ -48,6 +52,11 @@ input RegisterInput {
   firstName: String!
   lastName: String!
   password: String!
+}
+
+input UpdatePasswordInput {
+  password: String!
+  token: String!
 }
 
 type User {
