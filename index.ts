@@ -49,7 +49,6 @@ async function main() {
       entities: ["src/entity/*.*"]
     })
     const schema = await buildSchema({
-      // TODO : Use this to add resolvers
       resolvers: [__dirname + "/src/modules/**/*.ts"],
       authChecker:  ({ context :{req}},roles,) => {
         // here we can read the user from context
