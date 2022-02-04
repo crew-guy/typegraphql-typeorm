@@ -31,6 +31,7 @@ type Mutation {
   confirmUserRegistration(token: String!): Boolean!
   forgotPassword(email: String!): Boolean!
   login(email: String!, password: String!): User
+  logout: Boolean!
   register(data: RegisterInput!): User!
 }
 
