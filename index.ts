@@ -41,10 +41,10 @@ async function main() {
   try {
     const _ = await createConnection({
       ...dbCredentials,
-      synchronize: true,
       type: "postgres",
       port: 5432,
       ssl:sslVal,
+      synchronize: true,
       logging: true,
       entities: ["src/entity/*.*"]
     })
