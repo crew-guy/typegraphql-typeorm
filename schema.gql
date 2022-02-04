@@ -39,6 +39,10 @@ input PasswordInput {
   password: String!
 }
 
+input PasswordInputAlt {
+  password: String!
+}
+
 type Query {
   allCourses: [Course!]!
   hello: String!
