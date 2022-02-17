@@ -102,7 +102,7 @@ async function main() {
       // /graphql. Optionally provide this to match apollo-server.
       path: '/graphql'
     });
-    await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
+    await new Promise<void>(resolve => httpServer.listen({ port: 8080 }, resolve));
     console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`);
   } catch (error) {
     console.log(error)
