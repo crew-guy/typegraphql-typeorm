@@ -4,8 +4,8 @@ import { forgotPasswordPrefix } from './../constants/userPrefixes';
 import { redis } from '../../../redisdb';
 import { Arg, Ctx, Mutation } from 'type-graphql';
 import { Resolver } from 'type-graphql';
-import { MyContext } from 'src/types/MyContext';
 import { UpdatePasswordInput } from './register/UpdatePasswordInput';
+import { MyContext } from 'src/types/MyContext';
 
 @Resolver()
 export class ChangePasswordResolver {
