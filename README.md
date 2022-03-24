@@ -1,5 +1,8 @@
-Currently, I'm running a simple docker redis container on my machine using this command
+## Coureplanner backend
+<hr/>
 
-```bash
-docker run -d -p 6379:6379 --name redis redis
-```
+#### Stack
+
+1. Nest JS
+2. Notion SDK
+3. DynamoDB (setup using [Docker](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker) )
